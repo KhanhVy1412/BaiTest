@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Bài_test.Models.Phim>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .lop-sp {
+        float: left;
+        width: 27%;
+        text-align: center;
+        padding: 10px 5px;
+        margin: 0 auto;
+        font-weight: bold;
+        word-wrap: break-word;
+        /*margin-top:17%;*/
+        margin-left: 4%;
+        margin-right: 2%;
+        font-size: 100%;
+    }
+
+        .lop-sp:hover {
+            transform: scale(1.07);
+        }
+
+        .lop-sp .tua-sp {
+            word-wrap: break-word;
+            font-size: 130%;
+            color: black;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+
+    .tua-sp:link {
+        color: black;
+    }
+
+    a:link {
+        color: black;
+    }
+
+    .lop-sp .lop-hinh {
+        text-align: center;
+        padding: 0;
+        margin-bottom: 15px;
+    }
+</style>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="lop-sp">
+        <div class="lop-hinh ">
+            @*<a href='@Url.Action("Details", "NhaHang", new { id = item.MaMenu })'>*@
+                <img style="width:190px;height:295px;border-radius:15px" src="/@item.HinhPhim" alt="HinhSP" />
+            @*</a>*@
+        </div>
+
+        <p class="tua-sp" style="font-size:120%;color:black">
+            @*<a style="color:black" href='@Url.Action("Details", "NhaHang", new { id = item.MaMenu })'>*@
+                @Html.DisplayFor(modelItem => item.TenPhim)
+            @*</a>- @Html.DisplayFor(modelItem => item.DiaChi)*@
+            <br/>
+            Số người like: @Html.DisplayFor(modelItem => item.NumberLike) 
+        </p>
+        <p class="tua-sp" style="font-size:110%;color:dimgray">
+
+            <a href='@Url.Action("Like", "Phim", new { id=item.MaPhim })'>
+                <i class="fa fa-thumbs-up" style="font-size:25px"></i>
+            </a>|
+            <a href='@Url.Action("UnLike", "Phim", new { id=item.MaPhim })'>
+                <i class="fa fa-thumbs-down" style="font-size:25px"></i>
+            </a>
+            @*-@Html.ActionLink(new { controller = "DanhGia", action = "XemDanhGia",id = item.MaMenu})*@
+        </p>
+
+    </div>
+}
+
+

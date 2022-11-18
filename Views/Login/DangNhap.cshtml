@@ -1,0 +1,37 @@
+﻿@model Bài_test.Models.User
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DangNhap</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <tr>
+        <td>
+            Tài Khoản:
+        </td>
+        <td>
+            @Html.TextBox("TenDangNhap")
+            @ViewData["Loi1"]
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mật khẩu
+        </td>
+        <td>
+           @Html.Password("MatKhau")
+        @ViewData["Loi2"]
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td>
+       <input type="submit" value="đăng nhập"/>
+        </td>
+    </tr>
+}

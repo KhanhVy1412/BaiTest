@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+@{
+    Bài_test.Models.User userInfor = (Bài_test.Models.User)Session["Taikhoan"];
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Phim")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Đăng kí", "DangKy", "Login")</li>
+                    <li>
+                        @if (Session["TaiKhoan"] == null)
+                        {
+                            @*<a style="padding:4px 24px">Tài khoản</a>
+                            <a class="dropdown-item" href="~/Login/DangKy">
+                                <div href="">Đăng ký</div>
+                            </a>*@
+                            <a class="dropdown-item" href="~/Login/DangNhap">
+                                <div href="~/Phim/DangNhap">Đăng nhập</div>
+                            </a>
+                        }
+                        else
+                        {
+                            @*<a class="nav-link text-dark text-uppercase" style="padding:4px 24px">@userInfor.HoTen</a>*@
+                            <a class="dropdown-item" href="~/Login/Signout">Đăng xuất</a>
+                        }
+                    </li>
+
+                </ul>
+           
+
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
